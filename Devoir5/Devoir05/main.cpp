@@ -67,67 +67,70 @@ int main(int argc, const char * argv[]) {
     
     //Boucle pour traiter chaque compte
     
-    for(int i = 0; i<vectorCompte.size(); i++ ){
-        std::cout << "--------------------------------" << endl;
-        //"Cast" pour voir quel type the compte est a la position i
-        CompteEpargne* testEpargne = dynamic_cast<CompteEpargne*> (vectorCompte[i]);
-        CompteCheque* testCheque = dynamic_cast<CompteCheque*> (vectorCompte[i]);
-        
-        if(testEpargne != NULL){
-            
-            
-            std::cout << "La solde courante du compte epargne est: " << testEpargne -> getBalance() << endl;
-            std::cout << "Entrez un montant a debiter du compte: ";
-            std::cin >> temp;
-            testEpargne -> debit(temp);
-            std::cout << "Entrez un montant a crediter au compte: ";
-            std::cin >> temp;
-            testEpargne -> credit(temp);
-            testEpargne -> credit(testEpargne -> calculateInterest());
-            std::cout << "La solde finale du compte epargne est: " << testEpargne -> getBalance() << endl;
-            
-        } else if(testCheque != NULL){
-            
-            std::cout << "La solde courante du compte cheque est: " << testCheque -> getBalance() << endl;
-            std::cout << "Entrez un montant a debiter du compte: ";
-            std::cin >> temp;
-            //Si rien est ajouter ou sorti du compte, le frais n'est pas deduit.
-            
-            if(temp != 0){
-                testCheque -> debit(temp);
-            }
-            
-            std::cout << "Entrez un montant a crediter au compte: ";
-            std::cin >> temp;
-            
-            if(temp != 0){
-                testCheque -> credit(temp);
-            }
-            
-            std::cout << "La solde finale du compte cheque est: " << testCheque -> getBalance() << endl;
-            
-        } else {
-            
-            std::cout << "La solde courante du compte normal est: " << vectorCompte[i] -> getBalance() << endl;
-            std::cout << "Entrez un montant a debiter du compte: ";
-            std::cin >> temp;
-            vectorCompte[i] -> debit(temp);
-            std::cout << "Entrez un montant a crediter au compte: ";
-            std::cin >> temp;
-            vectorCompte[i] -> credit(temp);
-            std::cout << "La solde finale du compte normal est: " << vectorCompte[i] -> getBalance() << endl;
-            
-        }
-        
-    }
+	for (int i = 0; i < vectorCompte.size(); i++) {
+		std::cout << "--------------------------------" << endl;
+		//"Cast" pour voir quel type the compte est a la position i
+		CompteEpargne* testEpargne = dynamic_cast<CompteEpargne*> (vectorCompte[i]);
+		CompteCheque* testCheque = dynamic_cast<CompteCheque*> (vectorCompte[i]);
+
+		if (testEpargne != NULL) {
+
+
+			std::cout << "Le solde courant du compte epargne est: " << testEpargne->getBalance() << endl;
+			std::cout << "Entrez un montant a debiter du compte: ";
+			std::cin >> temp;
+			testEpargne->debit(temp);
+			std::cout << "Entrez un montant a crediter au compte: ";
+			std::cin >> temp;
+			testEpargne->credit(temp);
+			testEpargne->credit(testEpargne->calculateInterest());
+			std::cout << "Le solde final du compte epargne est: " << testEpargne->getBalance() << endl;
+
+		}
+		else if (testCheque != NULL) {
+
+			std::cout << "Le solde courant du compte cheque est: " << testCheque->getBalance() << endl;
+			std::cout << "Entrez un montant a debiter du compte: ";
+			std::cin >> temp;
+			//Si rien est ajouter ou sorti du compte, le frais n'est pas deduit.
+
+			if (temp != 0) {
+				testCheque->debit(temp);
+			}
+
+			std::cout << "Entrez un montant a crediter au compte: ";
+			std::cin >> temp;
+
+			if (temp != 0) {
+				testCheque->credit(temp);
+			}
+
+			std::cout << "Le solde final du compte cheque est: " << testCheque->getBalance() << endl;
+
+		}
+		else {
+
+			std::cout << "Le solde courant du compte normal est: " << vectorCompte[i]->getBalance() << endl;
+			std::cout << "Entrez un montant a debiter du compte: ";
+			std::cin >> temp;
+			vectorCompte[i]->debit(temp);
+			std::cout << "Entrez un montant a crediter au compte: ";
+			std::cin >> temp;
+			vectorCompte[i]->credit(temp);
+			std::cout << "Le solde final du compte normal est: " << vectorCompte[i]->getBalance() << endl;
+
+		}
+
+	}
     
-    std::cout << "------------ Soldes finales ----------------";
+    std::cout << "------------ Soldes finals ----------------"<<endl;
     
     for(int i = 0; i<vectorCompte.size(); i++ ){
     
         std::cout << "Compte " << i << " solde: ---> " << vectorCompte[i] -> getBalance() << endl;
     
     }
-    
-    
+
+
+	system("pause");
 }
